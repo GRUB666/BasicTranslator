@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 #include <QtNetwork/QNetworkAccessManager>
@@ -15,24 +15,10 @@ MainWindow::MainWindow(QWidget *parent)
     last_symbol = new QTimer(this);
     last_symbol->setInterval(1200);
 
-    //Slots---------------------
-
     connect(last_symbol, SIGNAL(timeout()), this, SLOT(timeoutSlot()));
 
 
     fillComboBoxes();
-
-    QNetworkAccessManager nam;
-    QNetworkRequest req(QUrl("http://www.google.com"));[
-    QNetworkReply *reply = nam.get(req);
-    QEventLoop loop;
-    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    loop.exec();
-    if(reply->bytesAvailable())
-    QMessageBox::information(this, “Info”, “Интернет есть :)”);
-    else
-    QMessageBox::critical(this, “Info”, “Интернета нету :(“);
-
 }
 
 MainWindow::~MainWindow()
